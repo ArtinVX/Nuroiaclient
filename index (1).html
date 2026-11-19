@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050914">
+<title>NuroiaClient | Beyond Limits</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#050914;
+--cyan:#00f5d4;
+--blue:#168cff;
+--purple:#7255ff;
+--text:#f4f8ff;
+--muted:#8999b2;
+--glass:rgba(18,30,51,.66);
+--border:rgba(255,255,255,.09);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+background:var(--bg);color:var(--text);
+font-family:Vazirmatn,sans-serif;
+overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+.container{width:min(1160px,91%);margin:auto}
+#particles{
+position:fixed;inset:0;width:100%;height:100%;
+z-index:-2;pointer-events:none
+}
+body:before{
+content:"";position:fixed;inset:0;z-index:-1;
+background-image:
+linear-gradient(rgba(0,245,212,.025) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,245,212,.025) 1px,transparent 1px);
+background-size:55px 55px;
+mask-image:linear-gradient(to bottom,black,transparent 90%);
+pointer-events:none
+}
+.ambient{
+position:fixed;width:450px;height:450px;
+border-radius:50%;filter:blur(140px);
+opacity:.13;z-index:-1;pointer-events:none
+}
+.a1{background:var(--cyan);top:5%;left:-200px}
+.a2{background:var(--purple);top:45%;right:-250px}
+.a3{background:var(--blue);bottom:-200px;left:35%}
+header{
+position:fixed;top:0;width:100%;z-index:100;
+background:rgba(5,9,20,.72);
+backdrop-filter:blur(25px);
+border-bottom:1px solid var(--border)
+}
+nav{
+height:78px;display:flex;align-items:center;
+justify-content:space-between
+}
+.logo{font-size:23px;font-weight:900;letter-spacing:-1px}
+.logo span{color:var(--cyan)}
+.links{display:flex;gap:28px;font-size:12px;color:var(--muted)}
+.links a:hover{color:var(--cyan)}
+.nav-btn{
+padding:10px 19px;border:1px solid #00f5d477;
+border-radius:9px;color:var(--cyan);font-size:12px;
+background:#00f5d409
+}
+.hero{
+min-height:850px;display:flex;align-items:center;
+padding:145px 0 90px;position:relative
+}
+.hero-grid{
+display:grid;grid-template-columns:1fr 1fr;
+gap:30px;align-items:center
+}
+.badge{
+display:inline-flex;gap:9px;align-items:center;
+border:1px solid #00f5d44a;
+background:#00f5d40c;color:var(--cyan);
+padding:9px 16px;border-radius:40px;font-size:11px;
+margin-bottom:25px
+}
+.dot{
+width:7px;height:7px;background:var(--cyan);
+border-radius:50%;box-shadow:0 0 12px var(--cyan)
+}
+.hero h1{
+font-size:clamp(48px,6vw,83px);
+font-weight:900;line-height:1.28;
+letter-spacing:-3px
+}
+.gradient{
+background:linear-gradient(90deg,#00f5d4,#42a8ff,#9c85ff);
+-webkit-background-clip:text;
+background-clip:text;color:transparent
+}
+.hero p{
+font-size:14px;line-height:2.6;color:var(--muted);
+margin:25px 0 30px;max-width:570px
+}
+.buttons{display:flex;gap:13px;flex-wrap:wrap}
+.btn{
+padding:14px 25px;border-radius:11px;
+display:inline-flex;align-items:center;gap:9px;
+font-size:13px;font-weight:800;transition:.3s
+}
+.btn:hover{transform:translateY(-5px)}
+.main-btn{
+background:linear-gradient(100deg,var(--cyan),#53c8ff);
+color:#041119;box-shadow:0 10px 35px #00f5d42c
+}
+.ghost-btn{
+border:1px solid var(--border);
+background:#ffffff07
+}
+.hero-stats{
+display:flex;gap:35px;margin-top:48px;flex-wrap:wrap
+}
+.stat strong{display:block;font-size:20px;color:var(--cyan)}
+.stat small{font-size:10px;color:var(--muted)}
+.visual{
+position:relative;height:530px;
+display:grid;place-items:center
+}
+.orbit{
+position:absolute;width:440px;height:440px;
+border:1px solid #00f5d426;border-radius:50%;
+box-shadow:0 0 70px #00f5d40b,inset 0 0 70px #00f5d40b
+}
+.orbit:before,.orbit:after{
+content:"";position:absolute;border-radius:50%;
+border:1px dashed #168cff55
+}
+.orbit:before{inset:35px}
+.orbit:after{inset:80px;border-color:#00f5d433}
+.phone{
+position:relative;width:235px;height:440px;
+border-radius:34px;padding:12px;
+background:linear-gradient(145deg,#33475e,#080e1a 45%,#172c3d);
+border:2px solid #9fb8d344;
+box-shadow:0 0 70px #00f5d426,0 40px 100px #000b;
+transform:rotate(-7deg);
+animation:phone 6s ease-in-out infinite;
+z-index:2
+}
+@keyframes phone{
+0%,100%{transform:translateY(0) rotate(-7deg)}
+50%{transform:translateY(-17px) rotate(-4deg)}
+}
+.screen{
+height:100%;border-radius:25px;
+background:linear-gradient(160deg,#0c1d2e,#070d18);
+padding:20px 13px;overflow:hidden;
+border:1px solid #ffffff14
+}
+.speaker{
+width:55px;height:6px;border-radius:10px;
+background:#304154;margin:0 auto 25px
+}
+.app-logo{text-align:center;font-size:17px;font-weight:900}
+.app-logo span{color:var(--cyan)}
+.app-sub{text-align:center;color:var(--muted);font-size:8px}
+.ring{
+width:105px;height:105px;border-radius:50%;
+border:2px solid var(--cyan);margin:28px auto 15px;
+display:grid;place-items:center;
+box-shadow:0 0 35px #00f5d433,inset 0 0 25px #00f5d422;
+color:var(--cyan);font-size:35px
+}
+.screen-title{text-align:center;font-size:11px}
+.screen-caption{text-align:center;font-size:8px;color:var(--muted);margin-top:5px}
+.mini-card{
+margin-top:25px;padding:11px;
+background:#ffffff08;border:1px solid #ffffff10;
+border-radius:10px;font-size:8px;
+display:flex;justify-content:space-between
+}
+.mini-card span:last-child{color:var(--cyan)}
+.floating{
+position:absolute;z-index:4;
+padding:14px 17px;border-radius:13px;
+background:rgba(14,29,47,.88);
+border:1px solid #00f5d43d;
+backdrop-filter:blur(15px);
+box-shadow:0 15px 45px #0007;
+font-size:11px
+}
+.floating strong{color:var(--cyan)}
+.float-one{top:75px;right:0;animation:float2 5s infinite}
+.float-two{bottom:70px;left:0;animation:float2 6s infinite reverse}
+@keyframes float2{50%{transform:translateY(-12px)}}
+.section{padding:110px 0}
+.heading{text-align:center;margin-bottom:60px}
+.eyebrow{font-size:10px;color:var(--cyan);letter-spacing:2px}
+.heading h2{font-size:34px;font-weight:900;margin:12px 0}
+.heading h2 span{color:var(--cyan)}
+.heading p{color:var(--muted);font-size:13px;line-height:2.4}
+.features{
+display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+}
+.feature{
+position:relative;overflow:hidden;
+padding:28px;border-radius:19px;
+background:linear-gradient(145deg,rgba(23,39,61,.85),rgba(9,17,31,.85));
+border:1px solid var(--border);
+transition:.4s
+}
+.feature:before{
+content:"";position:absolute;width:130px;height:130px;
+background:var(--cyan);filter:blur(90px);
+opacity:0;top:-70px;left:-50px;transition:.4s
+}
+.feature:hover{
+transform:translateY(-9px);
+border-color:#00f5d477;
+box-shadow:0 20px 55px #00f5d410
+}
+.feature:hover:before{opacity:.25}
+.feature-icon{
+width:53px;height:53px;border-radius:15px;
+background:linear-gradient(145deg,#00f5d421,#168cff16);
+border:1px solid #00f5d42b;
+display:grid;place-items:center;
+font-size:24px;color:var(--cyan);
+margin-bottom:22px
+}
+.feature h3{font-size:15px;margin-bottom:12px}
+.feature p{font-size:12px;color:var(--muted);line-height:2.4}
+.feature small{
+display:block;color:#00f5d4a0;
+font-size:9px;direction:ltr;text-align:right;margin-top:16px
+}
+.cloud{
+position:relative;overflow:hidden;
+background:linear-gradient(120deg,#0b1728,#0a1020);
+border-block:1px solid var(--border)
+}
+.cloud-grid{
+display:grid;grid-template-columns:1fr 1fr;
+gap:60px;align-items:center
+}
+.cloud h2{font-size:42px;line-height:1.6}
+.cloud h2 span{color:var(--cyan)}
+.cloud p{font-size:13px;line-height:2.7;color:var(--muted);margin-top:22px}
+.cloud-art{
+min-height:330px;border:1px solid #00f5d42a;
+border-radius:30px;display:grid;place-items:center;
+position:relative;
+background:radial-gradient(circle,#00f5d418,transparent 70%)
+}
+.cloud-symbol{
+font-size:120px;color:var(--cyan);
+filter:drop-shadow(0 0 35px #00f5d466);
+animation:float2 5s infinite
+}
+.cloud-label{
+position:absolute;bottom:25px;
+font-size:12px;color:var(--cyan);letter-spacing:2px
+}
+.cloud-pill{
+position:absolute;top:25px;right:25px;
+padding:8px 13px;border:1px solid var(--border);
+border-radius:30px;font-size:9px;color:var(--muted)
+}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{
+padding:30px;text-align:center;
+border:1px solid var(--border);border-radius:18px;
+background:var(--glass)
+}
+.step-number{
+font-size:42px;font-weight:900;
+color:var(--cyan);text-shadow:0 0 25px #00f5d433
+}
+.step h3{font-size:15px;margin:12px 0}
+.step p{font-size:12px;color:var(--muted);line-height:2.4}
+.download{
+text-align:center;
+background:radial-gradient(ellipse at center,#00f5d418,transparent 65%)
+}
+.download-box{
+padding:70px 25px;border:1px solid #00f5d433;
+border-radius:30px;
+background:linear-gradient(145deg,#102339bb,#090f1d);
+box-shadow:0 20px 80px #00f5d408
+}
+.download h2{font-size:42px;margin:18px 0}
+.download h2 span{color:var(--cyan)}
+.download p{color:var(--muted);font-size:13px;line-height:2.5}
+.version{
+display:inline-block;margin:25px 0;
+border:1px solid var(--line);
+padding:9px 18px;border-radius:30px;
+color:var(--cyan);font-size:11px
+}
+.faq{max-width:800px;margin:auto}
+details{
+padding:21px;margin-bottom:13px;
+border:1px solid var(--border);border-radius:14px;
+background:var(--glass)
+}
+summary{cursor:pointer;font-size:13px;font-weight:700}
+details p{font-size:12px;color:var(--muted);line-height:2.5;padding-top:15px}
+footer{
+border-top:1px solid var(--border);
+padding:45px 0;text-align:center
+}
+footer p{font-size:11px;line-height:2.7;color:var(--muted)}
+footer a{color:var(--cyan)}
+.reveal{opacity:0;transform:translateY(30px);transition:.8s}
+.reveal.show{opacity:1;transform:translateY(0)}
+@media(max-width:850px){
+.hero-grid,.cloud-grid{grid-template-columns:1fr}
+.visual{height:520px}
+.features{grid-template-columns:repeat(2,1fr)}
+.links{display:none}
+}
+@media(max-width:550px){
+.hero{padding-top:140px}
+.hero h1{font-size:49px}
+.visual{transform:scale(.83);margin:-25px -35px}
+.features,.steps{grid-template-columns:1fr}
+.cloud h2{font-size:33px}
+.heading h2{font-size:27px}
+.download h2{font-size:31px}
+.hero-stats{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<div class="ambient a1"></div>
+<div class="ambient a2"></div>
+<div class="ambient a3"></div>
+
+<header>
+<nav class="container">
+<a class="logo" href="#">NUROIA<span>CLIENT</span></a>
+<div class="links">
+<a href="#features">امکانات</a>
+<a href="#cloud">Cloudflare</a>
+<a href="#steps">شروع کار</a>
+<a href="#faq">سؤالات</a>
+</div>
+<a class="nav-btn" href="#download">دریافت برنامه</a>
+</nav>
+</header>
+
+<main>
+
+<section class="hero">
+<div class="container hero-grid">
+
+<div class="reveal">
+<div class="badge"><span class="dot"></span> NEXT GENERATION CLIENT</div>
+
+<h1>
+Beyond<br>
+<span class="gradient">Connection.</span>
+</h1>
+
+<p>
+یک تجربه متفاوت در مدیریت پروفایل‌های اتصال.
+NuroiaClient با ترکیب امکانات مدیریتی، فناوری ابری
+و طراحی مدرن، رویکردی جدید به مدیریت ارتباطات ارائه می‌کند.
+</p>
+
+<div class="buttons">
+<a href="#download" class="btn main-btn">دانلود NuroiaClient <span>↓</span></a>
+<a href="#features" class="btn ghost-btn">کشف امکانات</a>
+</div>
+
+<div class="hero-stats">
+<div class="stat"><strong>SMART</strong><small>مدیریت هوشمند</small></div>
+<div class="stat"><strong>CLOUD</strong><small>زیرساخت ابری</small></div>
+<div class="stat"><strong>SECURE</strong><small>کنترل دسترسی</small></div>
+</div>
+</div>
+
+<div class="visual reveal">
+<div class="orbit"></div>
+
+<div class="phone">
+<div class="screen">
+<div class="speaker"></div>
+<div class="app-logo">NUROIA<span>CLIENT</span></div>
+<div class="app-sub">CONNECTION MANAGEMENT</div>
+<div class="ring">⌁</div>
+<div class="screen-title">Smart Connection</div>
+<div class="screen-caption">Your connection dashboard</div>
+<div class="mini-card"><span>Profiles</span><span>READY</span></div>
+<div class="mini-card"><span>Cloud System</span><span>ACTIVE</span></div>
+<div class="mini-card"><span>Security</span><span>ENABLED</span></div>
+<div class="mini-card"><span>Backup</span><span>READY</span></div>
+</div>
+</div>
+
+<div class="floating float-one">☁ <strong> CLOUD READY</strong></div>
+<div class="floating float-two">✦ <strong> SMART SYSTEM</strong></div>
+</div>
+
+</div>
+</section>
+
+<section class="section" id="features">
+<div class="container">
+<div class="heading reveal">
+<div class="eyebrow">POWERFUL EXPERIENCE</div>
+<h2>یک کلاینت، <span>امکانات بیشتر</span></h2>
+<p>ابزارهای موردنیاز برای مدیریت بهتر، در یک محیط مدرن.</p>
+</div>
+
+<div class="features">
+
+<div class="feature reveal"><div class="feature-icon">◈</div><h3>مدیریت پروفایل اتصال</h3><p>افزودن، حذف، ویرایش و سازمان‌دهی پروفایل‌های اتصال.</p><small>PROFILE MANAGEMENT</small></div>
+
+<div class="feature reveal"><div class="feature-icon">▤</div><h3>پشتیبان‌گیری و بازیابی</h3><p>تهیه نسخه پشتیبان و بازیابی اطلاعات و تنظیمات.</p><small>BACKUP & RESTORE</small></div>
+
+<div class="feature reveal"><div class="feature-icon">⟳</div><h3>به‌روزرسانی خودکار</h3><p>بررسی نسخه‌های جدید و دریافت به‌روزرسانی نرم‌افزار.</p><small>AUTO UPDATE</small></div>
+
+<div class="feature reveal"><div class="feature-icon">⌘</div><h3>سیستم گزارش خطا</h3><p>ثبت و مدیریت گزارش مشکلات برای بررسی بهتر.</p><small>ERROR REPORTING</small></div>
+
+<div class="feature reveal"><div class="feature-icon">文</div><h3>پشتیبانی چندزبانه</h3><p>پشتیبانی از چند زبان و تنظیم تجربه کاربری.</p><small>MULTI LANGUAGE</small></div>
+
+<div class="feature reveal"><div class="feature-icon">◉</div><h3>مدیریت دسترسی</h3><p>مدیریت مجوزها و دسترسی به امکانات مختلف برنامه.</p><small>ACCESS CONTROL</small></div>
+
+<div class="feature reveal"><div class="feature-icon">⚡</div><h3>اتصال خودکار</h3><p>امکان برقراری اتصال خودکار هنگام اجرای برنامه.</p><small>AUTO CONNECTION</small></div>
+
+<div class="feature reveal"><div class="feature-icon">♧</div><h3>بهینه‌سازی باتری</h3><p>مدیریت منابع و فعالیت‌های پس‌زمینه برای مصرف بهینه‌تر.</p><small>BATTERY OPTIMIZATION</small></div>
+
+<div class="feature reveal"><div class="feature-icon">☁</div><h3>فناوری Cloudflare</h3><p>امکان استفاده از معماری‌های ابری سازگار بدون VPS اختصاصی.</p><small>CLOUD INTEGRATION</small></div>
+
+</div>
+</div>
+</section>
+
+<section class="section cloud" id="cloud">
+<div class="container cloud-grid">
+<div class="reveal">
+<div class="eyebrow">CLOUD INFRASTRUCTURE</div>
+<h2>قدرت ابرها،<br><span>بدون VPS اختصاصی.</span></h2>
+<p>
+با درنظرگرفتن قابلیت‌های Cloudflare،
+امکان طراحی زیرساخت‌های ابری و کاهش وابستگی به
+سرورهای سنتی در معماری‌های سازگار فراهم می‌شود.
+انعطاف‌پذیری بیشتر، مدیریت ساده‌تر و معماری قابل توسعه.
+</p>
+</div>
+
+<div class="cloud-art reveal">
+<div class="cloud-pill">CLOUDFLARE TECHNOLOGY</div>
+<div class="cloud-symbol">☁</div>
+<div class="cloud-label">CLOUD POWERED ARCHITECTURE</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="steps">
+<div class="container">
+<div class="heading">
+<div class="eyebrow">GET STARTED</div>
+<h2>شروع تجربه <span>Nuroia</span></h2>
+<p>سه مرحله برای شروع کار با کلاینت نورویا.</p>
+</div>
+<div class="steps">
+<div class="step"><div class="step-number">01</div><h3>دریافت برنامه</h3><p>نسخه موردنظر را دریافت و نصب کنید.</p></div>
+<div class="step"><div class="step-number">02</div><h3>تنظیم پروفایل</h3><p>پروفایل‌های اتصال خود را مدیریت کنید.</p></div>
+<div class="step"><div class="step-number">03</div><h3>شروع استفاده</h3><p>از امکانات و ابزارهای برنامه بهره ببرید.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section download" id="download">
+<div class="container">
+<div class="download-box reveal">
+<div class="eyebrow">NUROIA TEAM PRODUCT</div>
+<h2>Welcome to <span>Nuroia.</span></h2>
+<p>یک تجربه متفاوت در مدیریت اتصال‌ها.<br>فناوری، سادگی و امکانات پیشرفته.</p>
+<div class="version">ANDROID | COMING SOON</div>
+<br>
+<a href="#" id="downloadBtn" class="btn main-btn">دانلود NuroiaClient ↓</a>
+</div>
+</div>
+</section>
+
+<section class="section" id="faq">
+<div class="container">
+<div class="heading">
+<div class="eyebrow">HELP CENTER</div>
+<h2>سؤالات <span>متداول</span></h2>
+</div>
+<div class="faq">
+<details><summary>NuroiaClient چیست؟</summary><p>یک نرم‌افزار برای مدیریت پروفایل‌های اتصال و ارائه امکانات مدیریتی و کاربردی.</p></details>
+<details><summary>آیا به VPS نیاز دارد؟</summary><p>در معماری‌های سازگار با Cloudflare امکان استفاده بدون VPS اختصاصی وجود دارد. این موضوع به سرویس و پیاده‌سازی بستگی دارد.</p></details>
+<details><summary>آیا برنامه به‌روزرسانی خودکار دارد؟</summary><p>سیستم بررسی و دریافت نسخه‌های جدید برای نرم‌افزار در نظر گرفته شده است.</p></details>
+<details><summary>آیا اطلاعات قابل بازیابی هستند؟</summary><p>قابلیت پشتیبان‌گیری و بازیابی اطلاعات در امکانات برنامه پیش‌بینی شده است.</p></details>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+<div class="logo">NUROIA<span>CLIENT</span></div>
+<p>
+Designed & Developed by Nuroia Team<br>
+ساخته‌شده با دقت، برای تجربه‌ای بهتر.<br>
+<a href="https://t.me/Nuroia">Telegram | Nuroia Team</a><br>
+© 2026 Nuroia Team. All Rights Reserved.
+</p>
+</div>
+</footer>
+
+<script>
+// Animated particle background
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
+let particles=[];
+let w,h;
+
+function resize(){
+w=canvas.width=window.innerWidth;
+h=canvas.height=window.innerHeight;
+particles=Array.from({length:Math.min(90,Math.floor(w/12))},()=>({
+x:Math.random()*w,
+y:Math.random()*h,
+r:Math.random()*1.5+.3,
+speed:Math.random()*.35+.1
+}));
+}
+window.addEventListener('resize',resize);
+resize();
+
+function animate(){
+ctx.clearRect(0,0,w,h);
+particles.forEach(p=>{
+p.y-=p.speed;
+if(p.y<0){p.y=h;p.x=Math.random()*w}
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle='rgba(0,245,212,.55)';
+ctx.fill();
+});
+requestAnimationFrame(animate);
+}
+animate();
+
+// Scroll reveal
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
+observer.unobserve(entry.target);
+}
+});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// DOWNLOAD CONFIGURATION
+const DOWNLOAD_URL = "";
+
+document.getElementById('downloadBtn').addEventListener('click',function(e){
+if(!DOWNLOAD_URL){
+e.preventDefault();
+alert('لینک دانلود نسخه رسمی هنوز فعال نشده است.');
+}else{
+this.href=DOWNLOAD_URL;
+}
+});
+</script>
+</body>
+</html>
